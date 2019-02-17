@@ -23,15 +23,29 @@ ERROR_MSG="Is not defined"
 [[ "${BOT_TOKEN:?$ERROR_MSG}" ]]
 [[ "${CHAT_ID:?$ERROR_MSG}"   ]]
 
+if [[ "$STATUS" == *"Doc"* ]]; then
+
 OUT_MESSAGE=$( cat <<EOF
 <b>${STATUS}</b>
 ${MESSAGE}
+
+EOF
+)
+
+else
+
+OUT_MESSAGE=$( cat <<EOF
+<b>${STATUS}</b>
+${MESSAGE}
+
 <b>URL:</b> <a href="${BUILD_URL}">Link</a>
 <b>Pipeline: </b>${BUILD_PIPELINE_NAME}
 <b>Job: </b>${BUILD_JOB_NAME}
 <b>Build number: </b>${BUILD_NAME}
 EOF
 )
+
+fi
 
 RESPONSE=$(curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
                 -d "chat_id=${CHAT_ID}" \
