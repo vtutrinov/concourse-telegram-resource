@@ -25,7 +25,7 @@ ERROR_MSG="Is not defined"
 
 if [[ "$STATUS" == *"Doc"* ]]; then
 
-OUT_MESSAGE=$( cat <<EOF
+    OUT_MESSAGE=$( cat <<EOF
 <b>${STATUS}</b>
 ${MESSAGE}
 EOF
@@ -33,15 +33,25 @@ EOF
 
 else
 
-OUT_MESSAGE=$( cat <<EOF
+    if [[ $MESSAGE = "" ]]; then
+        OUT_MESSAGE=$( cat <<EOF
 <b>${STATUS}</b>
-${MESSAGE}
 <b>URL:</b> <a href="${BUILD_URL}">Link</a>
 <b>Pipeline: </b>${BUILD_PIPELINE_NAME}
 <b>Job: </b>${BUILD_JOB_NAME}
 <b>Build number: </b>${BUILD_NAME}
 EOF
-)
+    )
+    else
+        OUT_MESSAGE=$( cat <<EOF
+<b>${STATUS}</b>
+<b>URL:</b> <a href="${BUILD_URL}">Link</a>
+<b>Pipeline: </b>${BUILD_PIPELINE_NAME}
+<b>Job: </b>${BUILD_JOB_NAME}
+<b>Build number: </b>${BUILD_NAME}
+EOF
+    )
+    fi
 
 fi
 
