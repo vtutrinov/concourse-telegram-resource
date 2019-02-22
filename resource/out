@@ -45,6 +45,7 @@ EOF
     else
         OUT_MESSAGE=$( cat <<EOF
 <b>${STATUS}</b>
+${MESSAGE}
 <b>URL:</b> <a href="${BUILD_URL}">Link</a>
 <b>Pipeline: </b>${BUILD_PIPELINE_NAME}
 <b>Job: </b>${BUILD_JOB_NAME}
