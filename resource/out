@@ -33,7 +33,7 @@ EOF
 
 else
 
-    if [[ $MESSAGE = "" ]]; then
+    if [[ $MESSAGE == "" ]]; then
         OUT_MESSAGE=$( cat <<EOF
 <b>${STATUS}</b>
 <b>URL:</b> <a href="${BUILD_URL}">Link</a>
